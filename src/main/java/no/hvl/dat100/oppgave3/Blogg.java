@@ -5,46 +5,82 @@ import no.hvl.dat100.oppgave1.*;
 
 public class Blogg {
 
-	// TODO: objektvariable 
+	Innlegg[] innleggtabell;
+	int nesteledig;
 
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		
+		this.innleggtabell = new Innlegg[20];
+		this.nesteledig = 0;
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+
+		this.innleggtabell = new Innlegg[lengde];
+		this.nesteledig = 0;
 	}
 
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+		return this.nesteledig;
 	}
 	
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		
+		return this.innleggtabell;
 	}
 	
 	public int finnInnlegg(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		int funnetid = -1;
+		for (int i = 0; i < this.innleggtabell.length; i++){
+			if (this.innleggtabell[i].erLik(innlegg)){
+				funnetid = i;
+				break;
+			}
+		}
+		return funnetid;
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+		
+		boolean finnes = false;
+		for (Innlegg a : this.innleggtabell){
+			if (a != null && a.erLik(innlegg)){
+				finnes = true;
+				break;
+			}
+		}
+		return finnes;
 	}
 
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
 
+		boolean ledig = false;
+		if (this.innleggtabell[this.innleggtabell.length -1] == null){
+			ledig = true;
+		}
+		return ledig;
 	}
 	
 	public boolean leggTil(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		boolean lagttil = false;
+		if (!finnes(innlegg) && ledigPlass()){
+			this.innleggtabell[this.nesteledig] = innlegg;
+			this.nesteledig += 1;
+			lagttil = true;
+		}
+		return lagttil;
 	}
 	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		
+		String tekstreturn = "";
+		tekstreturn += ledigPlass();
+		for(Innlegg a : this.innleggtabell){
+			tekstreturn += a.toString();
+		}
+		return tekstreturn;
 	}
 
 	// valgfrie oppgaver nedenfor
