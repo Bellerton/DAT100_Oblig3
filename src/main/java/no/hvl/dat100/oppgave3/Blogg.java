@@ -33,7 +33,7 @@ public class Blogg {
 
 		int funnetid = -1;
 		for (int i = 0; i < this.innleggtabell.length; i++){
-			if (this.innleggtabell[i].erLik(innlegg)){
+			if (this.innleggtabell[i] != null && this.innleggtabell[i].erLik(innlegg)){
 				funnetid = i;
 				break;
 			}
@@ -76,7 +76,7 @@ public class Blogg {
 	public String toString() {
 		
 		String tekstreturn = "";
-		tekstreturn += ledigPlass();
+		tekstreturn += nesteledig + "\n";
 		for(Innlegg a : this.innleggtabell){
 			tekstreturn += a.toString();
 		}

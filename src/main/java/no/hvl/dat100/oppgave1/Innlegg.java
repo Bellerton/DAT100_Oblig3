@@ -71,7 +71,7 @@ public abstract class Innlegg {
 	
 	public boolean erLik(Innlegg innlegg) {
 		boolean erlik = false;
-		if (this.likes == innlegg.likes) {
+		if (this.id == innlegg.id) {
 			erlik = true;
 		}
 		return erlik;
